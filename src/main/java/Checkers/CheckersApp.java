@@ -158,6 +158,10 @@ public class CheckersApp extends Application {
                 case NORMAL:
                     turnLogic();
                     piece.moveDone(newX, newY);
+                    if (board[x0][y0].getPiece().getType() == PieceType.WHITE){
+                        piece.setType(PieceType.WHITE_KING);
+                        System.out.println("Test");
+                    }
                     board[x0][y0].setPiece(null);//delate
                     board[newX][newY].setPiece(piece);//create
                     labelCurrentTurn.setText(PlayerStatistic.displayCurrentTurn());

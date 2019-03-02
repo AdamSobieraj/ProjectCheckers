@@ -1,16 +1,28 @@
 package Checkers.BoardElements;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
+
+import java.io.IOException;
 
 import static Checkers.CheckersApp.TILE_SIZE;
 
 public class Piece extends StackPane {
 
+    private static final String dotsURL = "kor.png";
+
     private static final double DIMENSION_ELIPS_1 = 0.3125;
     private static final double DIMENSION_ELIPS_2 = 0.26;
 
+    public void setType(PieceType type) {
+        this.type = type;
+    }
+
+    Image dots = null;
     private PieceType type;
 
     //For movement cordinates
@@ -37,9 +49,18 @@ public class Piece extends StackPane {
         return mouseButtonOldPozY;
     }
 
+    private Image imageOpen(){
+
+        try {
+            dots = new Image(dotsURL);
+        }catch (NullPointerException  e){
+            System.out.println("Unable to retrieve Image!!!");
+        }
+        return dots;
+    }
+
     public Piece(PieceType type, int x, int y) {
         this.type = type;
-
         moveDone(x, y);
 
         //Piece Creation BLACK/WHITE
@@ -54,7 +75,12 @@ public class Piece extends StackPane {
 
         //Piece Bottom
         Ellipse ellipse = new Ellipse(TILE_SIZE * DIMENSION_ELIPS_1, TILE_SIZE * DIMENSION_ELIPS_2);
-        ellipse.setFill(type == PieceType.BLACK ? Color.BLACK : Color.WHITE);
+
+        if (type == PieceType.BLACK_KING || type == PieceType.WHITE_KING){
+            ellipse.setFill(new ImagePattern(imageOpen()) );
+        }else {
+            ellipse.setFill(type == PieceType.BLACK ? Color.BLACK : Color.WHITE);
+        }
         ellipse.setStroke(Color.GRAY);
         ellipse.setStrokeWidth(TILE_SIZE * 0.03);
 
@@ -71,8 +97,8 @@ public class Piece extends StackPane {
         });
         //drag Lambda
         setOnMouseDragged(e ->{
-            relocate(e.getSceneX() - mouseButtonPozX+mouseButtonOldPozX,
-                    e.getSceneY() - mouseButtonPozY + mouseButtonOldPozY);
+            relocate(e.getSceneX() - mouseButtonPozX + mouseButtonOldPozX,
+                     e.getSceneY() - mouseButtonPozY + mouseButtonOldPozY);
         });
 
     }

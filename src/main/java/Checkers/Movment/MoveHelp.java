@@ -134,11 +134,13 @@ public class MoveHelp {
             for (int j = -1; j <= 1; j=j+2) {
                 if (!board[x + i][y + j].hasPiece()) {
                     board[x + i][y + j].setFill(currentOption);
+                    board[x][y].setFill(currentOption);
                 }
                 if ( board[x + i][y + j].hasPiece()){
                     if (    !board[x + i][y + j].getPiece().getType().equals(board[x][y].getPiece().getType())&&
                             !board[x + (2*i)][y + (2*j)].hasPiece()  ){//black element
                         board[x + (2*i)][y + (2*j)].setFill(currentOption);
+                        board[x][y].setFill(currentOption);
                     }
                 }
 
