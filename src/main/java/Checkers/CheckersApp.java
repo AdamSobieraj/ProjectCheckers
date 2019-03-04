@@ -85,7 +85,7 @@ public class CheckersApp extends Application {
         border.setLeft(addFlowPane());//empty
         border.setRight(addFlowPane());//empty
         border.setBottom(addBottomStackPane());//empty
-        addStackPane(hbox);         // Add stack to HBox in top region
+        addStackPane(hbox);         // Add stack to H Box in top region
         border.setCenter(createContent());
         Scene scene = new Scene(border);
         primaryStage.setTitle("Checkres Game");
@@ -126,6 +126,7 @@ public class CheckersApp extends Application {
 
         //movable
         piece.setOnMouseReleased(e -> {
+
             int newX = MovmentLogic.toBoard(piece.getLayoutX());//position obtain
             int newY = MovmentLogic.toBoard(piece.getLayoutY());//there is hange of layout
 
@@ -145,9 +146,16 @@ public class CheckersApp extends Application {
             //add turn logic
             if((newX <0 || newY <0 || newX >= WIDTH || newY >=HEIGHT)){
                 result = new MoveDefinition(MoveIdent.NONE);
-            }else if ( board[x0][y0].getPiece().getType().equals(PlayerStatistic.getCurrentPlayerTurn())){
+                System.out.println("Before");
+            }else if ( board[x0][y0].getPiece().getType().equals(PlayerStatistic.getCurrentPlayerTurn())||
+                    (    (board[x0][y0].getPiece().getType().equals(PieceType.WHITE_KING)&&
+                            PlayerStatistic.getCurrentPlayerTurn().equals(PieceType.WHITE))||
+                            (board[x0][y0].getPiece().getType().equals(PieceType.BLACK_KING)&&
+                                    PlayerStatistic.getCurrentPlayerTurn().equals(PieceType.BLACK)))){//TODO Add king
+
                 result =  movmentLogic.tryToMove(piece, newX, newY);
             }else {
+                System.out.println("After");
                 result = new MoveDefinition(MoveIdent.NONE);
             }
 
@@ -158,12 +166,15 @@ public class CheckersApp extends Application {
                 case NORMAL:
                     turnLogic();
                     piece.moveDone(newX, newY);
-                    if (board[x0][y0].getPiece().getType() == PieceType.WHITE){
+
+                    if (board[x0][y0].getPiece().getType() == PieceType.WHITE){//TODO logic for end of board
                         piece.setType(PieceType.WHITE_KING);
-                        System.out.println("Test");
+                        board[newX][newY].setPiece(piece);//create king
+                        piece.drawElement();
+                    }else {
+                        board[newX][newY].setPiece(piece);//create piece
                     }
                     board[x0][y0].setPiece(null);//delate
-                    board[newX][newY].setPiece(piece);//create
                     labelCurrentTurn.setText(PlayerStatistic.displayCurrentTurn());
                     break;
                 case KILL:

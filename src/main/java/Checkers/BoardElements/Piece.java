@@ -1,13 +1,10 @@
 package Checkers.BoardElements;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
-
-import java.io.IOException;
 
 import static Checkers.CheckersApp.TILE_SIZE;
 
@@ -63,6 +60,29 @@ public class Piece extends StackPane {
         this.type = type;
         moveDone(x, y);
 
+        drawElement();
+
+        //Move section Lambda
+        setOnMousePressed( e ->{
+            mouseButtonPozX = e.getSceneX();
+            mouseButtonPozY = e.getSceneY();
+        });
+        //drag Lambda
+        setOnMouseDragged(e ->{
+            relocate(e.getSceneX() - mouseButtonPozX + mouseButtonOldPozX,
+                     e.getSceneY() - mouseButtonPozY + mouseButtonOldPozY);
+        });
+
+    }
+
+    //move function
+    public void moveDone(int x, int y){
+        mouseButtonOldPozX = x * TILE_SIZE;
+        mouseButtonOldPozY = y * TILE_SIZE;
+        relocate(mouseButtonOldPozX, mouseButtonOldPozY);
+    }
+
+    public void drawElement(){
         //Piece Creation BLACK/WHITE
         Ellipse pieceBG = new Ellipse(TILE_SIZE * DIMENSION_ELIPS_1, TILE_SIZE * DIMENSION_ELIPS_2);
         pieceBG.setFill(Color.GRAY);
@@ -89,25 +109,6 @@ public class Piece extends StackPane {
         ellipse.setTranslateY((TILE_SIZE - TILE_SIZE * DIMENSION_ELIPS_2 * 2)/2);
 
         getChildren().addAll(pieceBG, ellipse);
-
-        //Move section Lambda
-        setOnMousePressed( e ->{
-            mouseButtonPozX = e.getSceneX();
-            mouseButtonPozY = e.getSceneY();
-        });
-        //drag Lambda
-        setOnMouseDragged(e ->{
-            relocate(e.getSceneX() - mouseButtonPozX + mouseButtonOldPozX,
-                     e.getSceneY() - mouseButtonPozY + mouseButtonOldPozY);
-        });
-
-    }
-
-    //move function
-    public void moveDone(int x, int y){
-        mouseButtonOldPozX = x * TILE_SIZE;
-        mouseButtonOldPozY = y * TILE_SIZE;
-        relocate(mouseButtonOldPozX, mouseButtonOldPozY);
     }
 
     public PieceType getType() {

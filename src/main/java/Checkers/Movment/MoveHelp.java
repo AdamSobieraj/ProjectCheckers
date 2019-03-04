@@ -1,5 +1,6 @@
 package Checkers.Movment;
 
+import Checkers.BoardElements.PieceType;
 import javafx.scene.paint.Color;
 
 import Checkers.Player.PlayerStatistic;
@@ -30,6 +31,14 @@ public class MoveHelp {
             currentOption = Color.GREEN;
         }else {
             currentOption = Color.valueOf("#00303f");
+        }
+
+        if (    (board[x][y].getPiece().getType().equals(PieceType.WHITE_KING)&&
+                PlayerStatistic.getCurrentPlayerTurn().equals(PieceType.WHITE))||
+                (board[x][y].getPiece().getType().equals(PieceType.BLACK_KING)&&
+                PlayerStatistic.getCurrentPlayerTurn().equals(PieceType.BLACK))){
+            //logic for Kings
+            System.out.println("King");
         }
 
         if(board[x][y].getPiece().getType().equals(PlayerStatistic.getCurrentPlayerTurn())) {
