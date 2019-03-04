@@ -38,7 +38,7 @@ public class MoveHelp {
                 (board[x][y].getPiece().getType().equals(PieceType.BLACK_KING)&&
                 PlayerStatistic.getCurrentPlayerTurn().equals(PieceType.BLACK))){
             //logic for Kings
-            System.out.println("King");
+
         }
 
         if(board[x][y].getPiece().getType().equals(PlayerStatistic.getCurrentPlayerTurn())) {

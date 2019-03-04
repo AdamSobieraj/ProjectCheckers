@@ -145,8 +145,9 @@ public class CheckersApp extends Application {
 
             //add turn logic
             if((newX <0 || newY <0 || newX >= WIDTH || newY >=HEIGHT)){
-                result = new MoveDefinition(MoveIdent.NONE);
                 System.out.println("Before");
+                result = new MoveDefinition(MoveIdent.NONE);
+
             }else if ( board[x0][y0].getPiece().getType().equals(PlayerStatistic.getCurrentPlayerTurn())||
                     (    (board[x0][y0].getPiece().getType().equals(PieceType.WHITE_KING)&&
                             PlayerStatistic.getCurrentPlayerTurn().equals(PieceType.WHITE))||

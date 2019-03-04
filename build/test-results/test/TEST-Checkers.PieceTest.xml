@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Checkers.PieceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-02T17:33:46" hostname="DESKTOP-3V0R2PN" time="0.007">
+<testsuite name="Checkers.PieceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-04T11:51:44" hostname="DESKTOP-3HSK40D" time="0.01">
   <properties/>
-  <testcase name="testPieceMoveDoneNoMove" classname="Checkers.PieceTest" time="0.004"/>
-  <testcase name="testPieceMoveDone" classname="Checkers.PieceTest" time="0.003"/>
+  <testcase name="testPieceMoveDoneNoMove" classname="Checkers.PieceTest" time="0.005"/>
+  <testcase name="testPieceMoveDone" classname="Checkers.PieceTest" time="0.005"/>
   <system-out><![CDATA[This is test bench
 This is test bench
 ]]></system-out>

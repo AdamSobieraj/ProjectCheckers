@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Checkers.MoveHelpTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-02T17:33:46" hostname="DESKTOP-3V0R2PN" time="0.169">
+<testsuite name="Checkers.MoveHelpTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-04T11:51:44" hostname="DESKTOP-3HSK40D" time="0.374">
   <properties/>
-  <testcase name="testBoardHighliteAvailibleMove" classname="Checkers.MoveHelpTest" time="0.165"/>
-  <testcase name="testBoardHighliteAvailibleMoveKill" classname="Checkers.MoveHelpTest" time="0.004"/>
+  <testcase name="testBoardHighliteAvailibleMove" classname="Checkers.MoveHelpTest" time="0.332"/>
+  <testcase name="testBoardHighliteAvailibleMoveKill" classname="Checkers.MoveHelpTest" time="0.042"/>
   <system-out><![CDATA[This is test bench
 This is test bench
 ]]></system-out>
