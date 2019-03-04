@@ -145,18 +145,16 @@ public class CheckersApp extends Application {
 
             //add turn logic
             if((newX <0 || newY <0 || newX >= WIDTH || newY >=HEIGHT)){
-                System.out.println("Before");
                 result = new MoveDefinition(MoveIdent.NONE);
 
             }else if ( board[x0][y0].getPiece().getType().equals(PlayerStatistic.getCurrentPlayerTurn())||
                     (    (board[x0][y0].getPiece().getType().equals(PieceType.WHITE_KING)&&
                             PlayerStatistic.getCurrentPlayerTurn().equals(PieceType.WHITE))||
                             (board[x0][y0].getPiece().getType().equals(PieceType.BLACK_KING)&&
-                                    PlayerStatistic.getCurrentPlayerTurn().equals(PieceType.BLACK)))){//TODO Add king
+                                    PlayerStatistic.getCurrentPlayerTurn().equals(PieceType.BLACK)))){
 
                 result =  movmentLogic.tryToMove(piece, newX, newY);
             }else {
-                System.out.println("After");
                 result = new MoveDefinition(MoveIdent.NONE);
             }
 
@@ -168,11 +166,17 @@ public class CheckersApp extends Application {
                     turnLogic();
                     piece.moveDone(newX, newY);
 
-                    if (board[x0][y0].getPiece().getType() == PieceType.WHITE){//TODO logic for end of board
+                    if (        board[x0][y0].getPiece().getType() == PieceType.WHITE
+                            &&  (newY==0)){
                         piece.setType(PieceType.WHITE_KING);
                         board[newX][newY].setPiece(piece);//create king
                         piece.drawElement();
-                    }else {
+                    }else if(   board[x0][y0].getPiece().getType() == PieceType.BLACK
+                            &&  (newY==7)){
+                        piece.setType(PieceType.BLACK_KING);
+                        board[newX][newY].setPiece(piece);//create king
+                        piece.drawElement();
+                    } else {
                         board[newX][newY].setPiece(piece);//create piece
                     }
                     board[x0][y0].setPiece(null);//delate
@@ -181,15 +185,31 @@ public class CheckersApp extends Application {
                 case KILL:
                     turnLogic();
                     //kill count
-                    if (board[x0][y0].getPiece().getType().equals(PieceType.WHITE)){
+                    if (    board[x0][y0].getPiece().getType().equals(PieceType.WHITE)||
+                            board[x0][y0].getPiece().getType().equals(PieceType.WHITE_KING)){
                         PlayerStatistic.setWhiteKillCount(PlayerStatistic.getWhiteKillCount()+1);
                     }else {
                         PlayerStatistic.setBlackKillCount(PlayerStatistic.getBlackKillCount()+1);
                     }
-
+                    System.out.println(PlayerStatistic.getWhiteKillCount());
                     piece.moveDone(newX, newY);
+                    //////////////////////////////
+                    if (        board[x0][y0].getPiece().getType() == PieceType.WHITE
+                            &&  (newY==0)){
+                        piece.setType(PieceType.WHITE_KING);
+                        board[newX][newY].setPiece(piece);//create king
+                        piece.drawElement();
+                    }else if(   board[x0][y0].getPiece().getType() == PieceType.BLACK
+                            &&  (newY==7)){
+                        piece.setType(PieceType.BLACK_KING);
+                        board[newX][newY].setPiece(piece);//create king
+                        piece.drawElement();
+                    } else {
+                        board[newX][newY].setPiece(piece);//create piece
+                    }
+                    ///////////////////////////////
                     board[x0][y0].setPiece(null);//delate
-                    board[newX][newY].setPiece(piece);//create
+                    //board[newX][newY].setPiece(piece);//create
 
                     Piece killedPiece = result.getPiece();//element created
                     board[MovmentLogic.toBoard(killedPiece.getMouseButtonOldPozX())][MovmentLogic.toBoard(killedPiece.getMouseButtonOldPozY())].setPiece(null);

@@ -19,7 +19,6 @@ public class MovmentLogic {
     public MoveDefinition tryToMove(Piece piece, int newXX, int newYY){
 
         if (board[newXX][newYY].hasPiece() || (newXX + newYY)%2 == 0){
-            System.out.println("None");
             return new MoveDefinition(MoveIdent.NONE);
         }
         x0 = toBoard(piece.getMouseButtonOldPozX());
@@ -28,7 +27,6 @@ public class MovmentLogic {
         //Move Distinguisching // move direction identyfication going up or down
         if (        Math.abs(newXX - x0)==1 && //Movment for Piece normal
                 (   piece.getType().equals(PieceType.WHITE)||piece.getType().equals(PieceType.BLACK))){//blokada ruch w tył
-            System.out.println("wtf");
             return new MoveDefinition(MoveIdent.NORMAL);
         }else if (  (Math.abs(newXX - x0)>=0 && (Math.abs(newXX - x0)<=7 ) && //Movment for Piece normal
                 (   piece.getType().equals(PieceType.WHITE_KING)||piece.getType().equals(PieceType.BLACK_KING)))){//Movment for King
@@ -39,7 +37,7 @@ public class MovmentLogic {
             int tmpX = 0;
 
             if(dirX==1){
-                for (int i=x0; i<=(newXX-x0); i=i+dirX){//x -> i// y -> (y0-(i*dirY)+dirX)
+                for (int i=x0; i<=(newXX-x0); i=i+dirX){
                     if((i>x0&& i<newXX)){
 
                         tmpX = i;
@@ -52,7 +50,7 @@ public class MovmentLogic {
                     }
                 }
             }else {
-                for (int i=x0; i>=(newXX-x0); i=i+dirX){//x -> i// y -> newYY+(i*dirY)+dirX
+                for (int i=x0; i>=(newXX-x0); i=i+dirX){
                     if((i<x0 && i>newXX)){
                         tmpX = i;
                         tmpY = tmpY + dirY;
@@ -75,11 +73,5 @@ public class MovmentLogic {
             }
         }
         return new MoveDefinition(MoveIdent.NONE);
-    }
-
-    public void test(){
-        for (int i=0; i<=2;i++){
-            System.out.println(i);
-        }
     }
 }
