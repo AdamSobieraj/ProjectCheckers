@@ -1,0 +1,6 @@
+Checkers/MoveHelpTest.java
+ Checkers.MoveHelpTest
+Checkers/PieceTest.java
+ Checkers.PieceTest
+Checkers/MovementLogicTest.java
+ Checkers.MovementLogicTest

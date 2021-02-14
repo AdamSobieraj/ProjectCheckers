@@ -1,0 +1,25 @@
+Checkers/Movment/MovmentLogic.java
+ Checkers.Movment.MovmentLogic
+Checkers/JavaFX/Popup.java
+ Checkers.JavaFX.Popup
+Checkers/GameControll/GameEndControll.java
+ Checkers.GameControll.GameEndControll
+Checkers/BoardElements/PieceType.java
+ Checkers.BoardElements.PieceType
+Checkers/BoardElements/Piece.java
+ Checkers.BoardElements.Piece
+Checkers/BoardElements/Tile.java
+ Checkers.BoardElements.Tile
+Checkers/Movment/MoveIdent.java
+ Checkers.Movment.MoveIdent
+Checkers/Movment/MoveDefinition.java
+ Checkers.Movment.MoveDefinition
+Checkers/Player/PlayerStatistic.java
+ Checkers.Player.PlayerStatistic
+Checkers/CheckersApp.java
+ Checkers.CheckersApp
+ Checkers.CheckersApp$1
+Checkers/JavaFX/Window.java
+ Checkers.JavaFX.Window
+Checkers/Movment/MoveHelp.java
+ Checkers.Movment.MoveHelp
